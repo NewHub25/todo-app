@@ -6,6 +6,7 @@ import MainSection from './components/MainSection';
 import { TodoType } from './types';
 import useChangeTab from './hooks/useChangeIcon';
 import { changeTitle } from './logic/constants';
+import { AnimatePresence } from 'framer-motion';
 
 const MockTodos: TodoType[] = [
   {
@@ -34,7 +35,9 @@ const App = () => {
     <div className='todoapp'>
       <Header dispatch={dispatch} />
       <MainSection todos={todos} dispatch={dispatch} />
-      <Footer todos={todos} dispatch={dispatch} />
+      <AnimatePresence>
+        <Footer todos={todos} dispatch={dispatch} />
+      </AnimatePresence>
     </div>
   );
 };

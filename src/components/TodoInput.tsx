@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { sanitize } from "../logic/constants";
+import React, { useCallback } from 'react';
+import { sanitize } from '../logic/constants';
 
 interface Props {
   onSubmit: (value: string) => void;
@@ -22,30 +22,30 @@ const TodoInput: React.FC<Props> = ({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         const value = e.currentTarget.value.trim();
         if (value.length <= 2) return;
         onSubmit(sanitize(value));
-        e.currentTarget.value = "";
+        e.currentTarget.value = '';
       }
     },
     [onSubmit]
   );
 
   return (
-    <div className="input-container">
+    <div className='input-container'>
       <input
-        className="new-todo"
-        id="todo-input"
-        type="text"
-        data-testid="text-input"
+        className='new-todo'
+        id='todo-input'
+        type='text'
+        data-testid='text-input'
         autoFocus
         placeholder={placeholder}
         defaultValue={defaultValue}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
       />
-      <label className="visually-hidden" htmlFor="todo-input">
+      <label className='visually-hidden' htmlFor='todo-input'>
         {label}
       </label>
     </div>

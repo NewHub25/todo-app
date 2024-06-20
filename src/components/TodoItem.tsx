@@ -2,12 +2,26 @@ import React, { memo, useState, useCallback } from 'react';
 import { ActionType, TodoType } from '../types';
 import TodoInput from './TodoInput';
 import { ACTIONS } from '../logic/constants';
+import { Variants, motion } from 'framer-motion';
 
 interface Props {
   todo: TodoType;
   dispatch: React.Dispatch<ActionType>;
   index: number;
 }
+
+const variants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: ({ delay }) => ({
+    opacity: 1,
+    transition: {
+      duration: 1,
+      delay: delay,
+    },
+  }),
+};
 
 const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
   const [isWritable, setIsWritable] = useState(false);
@@ -23,7 +37,7 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
   );
   const updateItem = useCallback(
     (id: string, title: string) =>
-      dispatch({ type: ACTIONS.UPDATE_ITEM, payload: { id, title} }),
+      dispatch({ type: ACTIONS.UPDATE_ITEM, payload: { id, title } }),
     [dispatch]
   );
 
@@ -45,7 +59,16 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
   );
 
   return (
-    <li className={todo.completed ? 'completed' : ''} data-testid='todo-item'>
+    <motion.li
+      layoutId={todo.id}
+      className={todo.completed ? 'completed' : ''}
+      data-testid='todo-item'
+      variants={variants}
+      initial='hidden'
+      animate='visible'
+      exit="hidden"
+      custom={{ delay: (index + 1) * 0.2 }}
+    >
       <div className='view'>
         {isWritable ? (
           <TodoInput
@@ -77,7 +100,7 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
           </>
         )}
       </div>
-    </li>
+    </motion.li>
   );
 });
 export default TodoItem;

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import TodoItem from './TodoItem';
 import { ActionType, TodoType } from '../types';
 import { ACTIONS } from '../logic/constants';
+import { AnimatePresence } from 'framer-motion';
 
 interface MainSectionProps {
   todos: TodoType[];
@@ -48,14 +49,16 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
         </div>
       ) : null}
       <ul className='todo-list' data-testid='todo-list'>
-        {visibleTodos.map((todo, index) => (
-          <TodoItem
-            todo={todo}
-            key={todo.id}
-            dispatch={dispatch}
-            index={index}
-          />
-        ))}
+        <AnimatePresence>
+          {visibleTodos.map((todo, index) => (
+            <TodoItem
+              todo={todo}
+              key={todo.id}
+              dispatch={dispatch}
+              index={index}
+            />
+          ))}
+        </AnimatePresence>
       </ul>
     </main>
   );

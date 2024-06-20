@@ -1,12 +1,12 @@
-import { ActionType, TodoType } from "../types";
-import { ACTIONS, randomId } from "./constants";
+import { ActionType, TodoType } from '../types';
+import { ACTIONS, randomId } from './constants';
 
 const { ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM, TOGGLE_ITEM, REMOVE_ALL_ITEMS, TOGGLE_ALL, REMOVE_COMPLETED_ITEMS } = ACTIONS;
 
 export const todoReducer = (state: TodoType[], { type, payload }: ActionType): TodoType[] => {
   switch (type) {
     case ADD_ITEM:
-      return [...state, { id: randomId(), title: payload.title!, completed: false }];
+      return [{ id: randomId(), title: payload.title!, completed: false }, ...state];
     case UPDATE_ITEM:
       return state.map((todo) => (todo.id === payload.id! ? { ...todo, title: payload.title! } : todo));
     case REMOVE_ITEM:
