@@ -57,21 +57,21 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
           </label>
         </div>
       ) : null}
-      <Reorder.Group
-        axis='y'
-        values={todos}
-        onReorder={pathname === '/' ? newOrderTodos : () => {}}
-        className='todo-list'
-        data-testid='todo-list'
-      >
-        <AnimatePresence>
+      <AnimatePresence>
+        <Reorder.Group
+          axis='y'
+          values={todos}
+          onReorder={pathname === '/' ? newOrderTodos : () => {}}
+          className='todo-list'
+          data-testid='todo-list'
+        >
           {visibleTodos.map((todo, index) => (
             <Reorder.Item key={todo.id} value={todo}>
               <TodoItem todo={todo} dispatch={dispatch} index={index} />
             </Reorder.Item>
           ))}
-        </AnimatePresence>
-      </Reorder.Group>
+        </Reorder.Group>
+      </AnimatePresence>
     </main>
   );
 };
