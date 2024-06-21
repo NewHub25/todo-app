@@ -6,6 +6,7 @@ export const ACTIONS = Object.freeze({
   REMOVE_ALL_ITEMS: Symbol(),
   TOGGLE_ALL: Symbol(),
   REMOVE_COMPLETED_ITEMS: Symbol(),
+  SET_TODOS: Symbol(),
 });
 
 export const stringsToCatch =

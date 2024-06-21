@@ -6,6 +6,9 @@ export interface TodoType {
 export type ActionType = {
   type: Symbol;
   payload: Partial<TodoType>;
+} | {
+  type: Symbol;
+  payload: TodoType[];
 };
 
 export type ListOfTodos = Array<TodoType>;

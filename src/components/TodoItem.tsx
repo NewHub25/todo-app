@@ -59,14 +59,14 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
   );
 
   return (
-    <motion.li
+    <motion.div
       layoutId={todo.id}
       className={todo.completed ? 'completed' : ''}
       data-testid='todo-item'
       variants={variants}
       initial='hidden'
       animate='visible'
-      exit="hidden"
+      exit='hidden'
       custom={{ delay: (index + 1) * 0.2 }}
     >
       <div className='view'>
@@ -100,7 +100,7 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
           </>
         )}
       </div>
-    </motion.li>
+    </motion.div>
   );
 });
 export default TodoItem;

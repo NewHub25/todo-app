@@ -1,9 +1,15 @@
 import { ActionType, TodoType } from '../types';
 import { ACTIONS, randomId } from './constants';
 
-const { ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM, TOGGLE_ITEM, REMOVE_ALL_ITEMS, TOGGLE_ALL, REMOVE_COMPLETED_ITEMS } = ACTIONS;
+const { ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM, TOGGLE_ITEM, REMOVE_ALL_ITEMS, TOGGLE_ALL, REMOVE_COMPLETED_ITEMS, SET_TODOS } = ACTIONS;
 
 export const todoReducer = (state: TodoType[], { type, payload }: ActionType): TodoType[] => {
+  if (Array.isArray(payload)) {
+    if (type === SET_TODOS) {
+      return [...payload]
+    }
+    throw Error(`Unknown action: ${type}`);
+  }
   switch (type) {
     case ADD_ITEM:
       return [{ id: randomId(), title: payload.title!, completed: false }, ...state];

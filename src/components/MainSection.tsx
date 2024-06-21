@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import TodoItem from './TodoItem';
 import { ActionType, TodoType } from '../types';
 import { ACTIONS } from '../logic/constants';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, Reorder } from 'framer-motion';
 
 interface MainSectionProps {
   todos: TodoType[];
@@ -32,6 +32,15 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
     [dispatch]
   );
 
+  const newOrderTodos = useCallback(
+    (todos: TodoType[]) =>
+      dispatch({
+        type: ACTIONS.SET_TODOS,
+        payload: [...todos],
+      }),
+    [dispatch]
+  );
+
   return (
     <main className='main' data-testid='main'>
       {visibleTodos.length > 0 ? (
@@ -48,18 +57,21 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
           </label>
         </div>
       ) : null}
-      <ul className='todo-list' data-testid='todo-list'>
+      <Reorder.Group
+        axis='y'
+        values={todos}
+        onReorder={pathname === '/' ? newOrderTodos : () => {}}
+        className='todo-list'
+        data-testid='todo-list'
+      >
         <AnimatePresence>
           {visibleTodos.map((todo, index) => (
-            <TodoItem
-              todo={todo}
-              key={todo.id}
-              dispatch={dispatch}
-              index={index}
-            />
+            <Reorder.Item key={todo.id} value={todo}>
+              <TodoItem todo={todo} dispatch={dispatch} index={index} />
+            </Reorder.Item>
           ))}
         </AnimatePresence>
-      </ul>
+      </Reorder.Group>
     </main>
   );
 };
