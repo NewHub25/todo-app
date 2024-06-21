@@ -16,8 +16,8 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
   const visibleTodos = useMemo(
     () =>
       todos.filter((todo) => {
-        if (pathname === '/active') return !todo.completed;
-        if (pathname === '/completed') return todo.completed;
+        if (pathname === '/todo-app/active') return !todo.completed;
+        if (pathname === '/todo-app/completed') return todo.completed;
         return todo;
       }),
     [todos, pathname]
@@ -61,7 +61,7 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
         <Reorder.Group
           axis='y'
           values={todos}
-          onReorder={pathname === '/' ? newOrderTodos : () => {}}
+          onReorder={pathname === '/todo-app/' ? newOrderTodos : () => {}}
           className='todo-list'
           data-testid='todo-list'
         >

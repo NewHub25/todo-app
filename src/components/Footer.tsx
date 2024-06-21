@@ -23,7 +23,7 @@ const variants: Variants = {
 };
 
 const Footer: React.FC<Props> = ({ todos, dispatch }) => {
-  const { pathname: route } = useLocation();
+  const { pathname } = useLocation();
   const activeTodos = useMemo(
     () => todos.filter((todo) => !todo.completed),
     [todos]
@@ -42,19 +42,19 @@ const Footer: React.FC<Props> = ({ todos, dispatch }) => {
       } left!`}</span>
       <ul className='filters' data-testid='footer-navigation'>
         <li>
-          <Link className={route === '/' ? 'selected' : ''} to='/'>
+          <Link className={pathname === '/todo-app/' ? 'selected' : ''} to='/todo-app/'>
             All
           </Link>
         </li>
         <li>
-          <Link className={route === '/active' ? 'selected' : ''} to='/active'>
+          <Link className={pathname === '/todo-app/active' ? 'selected' : ''} to='/todo-app/active'>
             Active
           </Link>
         </li>
         <li>
           <Link
-            className={route === '/completed' ? 'selected' : ''}
-            to='/completed'
+            className={pathname === '/todo-app/completed' ? 'selected' : ''}
+            to='/todo-app/completed'
           >
             Completed
           </Link>
