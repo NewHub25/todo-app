@@ -22,13 +22,20 @@ but useful for people who use screen readers */
 .toggle-all-label {
   pointer-events: none;
 }
-#root{
+#root {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   height: 100dvh;
 }
-.todoapp{
+.todoapp {
   width: min(500px, 90vw);
+}
+ul label:active {
+  cursor: grab;
+}
+input[type='checkbox'],
+ul button {
+  cursor: pointer;
 }
