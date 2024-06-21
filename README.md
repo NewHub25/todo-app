@@ -1,27 +1,33 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de aplicación de lista de tareas (Todo App) construido con TypeScript y React, utilizando Framer Motion para animaciones y ViteJS como el bundler.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React con TypeScript**: Aprovecha las ventajas de los tipos estáticos para un desarrollo más robusto.
+- **Framer Motion**: Animaciones fluidas y personalizables.
+- **ViteJS**: Desarrollo rápido y construcción eficiente.
 
-## Expanding the ESLint configuration
+## Capturas de pantalla
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![Todo App](./screenshots/todo-app.png)
 
-- Configure the top-level `parserOptions` property like this:
+## Requisitos
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Node.js (>= 18.x)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Instalación
+
+1. Clona este repositorio:
+
+    ```bash
+    git clone https://github.com/NewHub25/todo-app.git
+    cd todo-app
+    ```
+
+2. Instala las dependencias:
+
+    ```bash
+    npm install
+    ```
+   
