@@ -2,7 +2,7 @@ import React, { memo, useState, useCallback } from 'react';
 import { ActionType, TodoType } from '../types';
 import TodoInput from './TodoInput';
 import { ACTIONS } from '../logic/constants';
-import { Variants, motion } from 'framer-motion';
+import { Reorder, Variants, motion } from 'framer-motion';
 
 interface Props {
   todo: TodoType;
@@ -59,7 +59,8 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
   );
 
   return (
-    <motion.div
+    <Reorder.Item
+      value={todo}
       layoutId={todo.id}
       className={todo.completed ? 'completed' : ''}
       data-testid='todo-item'
@@ -100,7 +101,7 @@ const TodoItem = memo<Props>(function Item({ todo, dispatch, index }) {
           </>
         )}
       </div>
-    </motion.div>
+    </Reorder.Item>
   );
 });
 export default TodoItem;

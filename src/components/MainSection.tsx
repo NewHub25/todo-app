@@ -66,9 +66,12 @@ const MainSection: React.FC<MainSectionProps> = ({ todos, dispatch }) => {
           data-testid='todo-list'
         >
           {visibleTodos.map((todo, index) => (
-            <Reorder.Item key={todo.id} value={todo}>
-              <TodoItem todo={todo} dispatch={dispatch} index={index} />
-            </Reorder.Item>
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              dispatch={dispatch}
+              index={index}
+            />
           ))}
         </Reorder.Group>
       </AnimatePresence>
